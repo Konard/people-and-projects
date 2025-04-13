@@ -1,85 +1,60 @@
-# Associative Data Models and "Links Theory" in Practice
+# Associative Data Models: Summary of Findings
 
-This document summarizes people, projects, articles, and systems that align with the associative data model and links theory described in the [Habr article](https://habr.com/ru/articles/895896). This model emphasizes *associative linking*, where relationships (edges) are first-class citizens capable of linking to other relationships—unlike traditional graph databases (which disallow edge-to-edge links), hypergraphs, or relational models.
+This document summarizes the context from the article ["The Links Theory 0.0.2"](https://habr.com/ru/articles/895896) and identifies related projects and articles on associative data models, excluding standard graphs (no edges between edges) and relational models (typically too many tables). The findings focus on projects and resources not mentioned in the original article, suitable for researchers and developers exploring associative data structures for AI and beyond.
 
-## Overview of Associative Data Modeling & Links Theory
+## Context from "The Links Theory 0.0.2"
 
-The **associative data model** (or "links theory") is based on the following principles:
+The article, published on Habr, introduces "The Links Theory 0.0.2," a framework for a unified informational theory inspired by human associative memory, aimed at future AI data storage. Key points include:
 
-- **Atomic Links:** All information is represented as atomic “links” (or sentences) with a subject–verb–object structure.
-- **Edge-to-Edge Linking:** Any link, representing an association, can itself be linked to other links—allowing recursive or layered relationships.
-- **Uniform Representation:** Everything—data objects, relationships, relationship types— is stored uniformly as links.
-- **Flexibility & Evolution:** This model reduces schema complexity; any change is simply new links rather than refactoring tables.
+- **Purpose**: Develop a simpler data model using set theory (\`L \to L^2\`), with doublet-links (2-tuples) and triplet-links (3-tuples) for efficient data representation and deduplication.
+- **Comparison**: Outperforms relational algebra and graph theory, with implementations like Deep (PostgreSQL-based) and plans for LinksPlatform (Rust, offering 200x write, 1000x read improvements).
+- **Features**: Includes visual tools (link blueprint designer, H-tree fractal demo) and future plans for self-projection and comparisons with set theory, type theory, etc.
+- **Resources**: References Wikipedia ([Associative Model Archive](https://web.archive.org/web/20210814063207/https://en.wikipedia.org/wiki/Associative_model_of_data)), GitHub repositories, and community channels (Telegram, Deep.Foundation blog).
 
-These ideas mirror how human cognition associates concepts and have been proposed as an advance beyond both relational models and traditional graph databases.
+The associative model stores entities as items and relationships as links, supporting higher-order connections (links to links), unlike graphs or multi-table relational databases.
 
-## Pioneers and Key Figures
+## Identified Projects
 
-### Simon Williams – The Associative Model of Data
-- **Overview:** Introduced an early associative model where data is stored as *Items* and *Links*. A fact, e.g., “Mary is sister to William,” becomes a link associating the items “Mary” and “William” through the relationship “sister.”
-- **Key Features:** Links can themselves be the subject or object of further links, allowing rich recursive associations.
-- **References:** [Williams’ writings and Sentences DBMS](#).
+Below are projects aligned with associative data models, not mentioned in the article:
 
-### Athanassios Hatzis – R3DM/S3DM Framework
-- **Overview:** Developed the R3DM/S3DM framework, which treats associations as first-class entities. His work shows how an associative model can support link-to-link relationships.
-- **Key Project:** TRIADB, an analytical engine built on this concept.
-- **Key Features:** Data is modeled as a hypergraph where nodes and edges have no strict separation.
-- **References:** [Hatzis’ publications on associative data modeling](#).
+| Project       | Description                                                                 | Relevance                                                  | URL                                                                 |
+|---------------|-----------------------------------------------------------------------------|------------------------------------------------------------|---------------------------------------------------------------------|
+| **CQL**       | Open-source tool using category theory for data integration and querying.   | Mathematical approach to relationships, akin to set theory. | [CQL Website](https://categoricaldata.net/)                         |
+| **HyperGraphDB** | Open-source hypergraph database for AI and semantic web applications.     | Supports edges connecting edges, fitting associative needs. | [HyperGraphDB Website](https://hypergraphdb.org/)                   |
+| **TypeDB**    | Open-source hypergraph database for knowledge representation.               | Models complex relationships beyond standard graphs.        | [TypeDB Website](https://vaticle.com/typedb)                       |
+| **Graphbrain**| Semantic hypergraph database for natural language processing.               | Handles recursive, n-ary connections like associative links.| [Graphbrain Docs](https://graphbrain.net/overview/hypergraph.html) |
+| **AtomicDB**  | Associative database storing unique instances with managed associations.    | Directly implements associative model (possibly inactive).  | [AtomicDBOnline](https://www.atomicdbonline.com/)                   |
+| **Qlikview**  | BI tool with associative data model for dynamic data exploration.           | Links data for analysis, though focused on BI, not storage. | [Qlik Community](https://community.qlik.com/t5/QlikView-App-Dev/QlikView-Associative-Model-Explained-A-perspective-on-R3DM/td-p/1256548) |
 
-### Konstantin Dyachenko & Ivan Glazunov – Deep.Foundation
-- **Overview:** Deep.Foundation is a modern project that implements an associative data model using a single `Links` table.
-- **Key Features:** 
-  - Every piece of data is stored as a link, allowing associations to refer to any other association.
-  - Includes tools like **Deep.Case** for visual exploration.
-  - Emphasizes “data-driven development” with flexible, schema-agnostic design.
-- **References:** [Deep.Foundation documentation and Medium articles](#).
+## Related Articles
 
-> **Note:** Other pioneers linked to Topic Maps (e.g., Steve Pepper and Lars Marius Garshol) have also contributed to first-class relationship modeling, further reinforcing the validity of associative approaches.
+These articles provide theoretical and practical insights into associative models, not referenced in the original:
 
-## Projects and Systems Implementing Associative Models
+- **"Associative Data Modeling Demystified" Series**: Explores associative technology in databases like AtomicDB, comparing with graph and document models.  
+  - [Part 1](https://www.datasciencecentral.com/associative-data-modeling-demystified-part1/)
+- **"The associative data model"**: Compares associative and relational models, highlighting business-database alignment.  
+  - [ResearchGate](https://www.researchgate.net/publication/234779362_The_associative_data_model)
+- **"Categorical Data Integration for Computational Science"**: Discusses CQL's functorial data migration for data integrity.  
+  - [arXiv](https://arxiv.org/abs/1903.10579)
 
-### 1. LazySoft *Sentences*
-- **Description:** An early DBMS system that implemented the associative model as described by Simon Williams.
-- **Key Idea:** Stored all data as *Items* and *Links*, where links could be reused as subjects/objects in further associations.
+## Notes
 
-### 2. TRIADB (R3DM/S3DM)
-- **Description:** An analytical engine that models data as a hypergraph of associations.
-- **Key Idea:** Allows deep associative querying without the rigidities of traditional SQL joins.
+- **Criteria**: Projects and articles were selected for supporting higher-order relationships, excluding standard graphs (no edge-to-edge connections) and relational models (avoiding excessive tables).
+- **Activity**: Most projects (CQL, HyperGraphDB, TypeDB, Graphbrain) are active; AtomicDB’s status is unclear but conceptually relevant.
+- **Date**: Findings are current as of April 13, 2025, ensuring relevance.
 
-### 3. Deep.Links (Deep.Foundation)
-- **Description:** An open-source environment implementing a fully associative runtime.
-- **Key Idea:** A single `Links` table holds every data entity and relationship. This provides native support for linking relationships to relationships, hence enabling recursive associations.
+This summary provides a starting point for exploring associative data models, with links for further investigation.
 
-### 4. Topic Maps
-- **Description:** A knowledge modeling standard (ISO/IEC 13250) where topics and associations are both first-class objects.
-- **Key Idea:** Associations are explicitly treated as objects that can have properties and roles. While not allowing full edge-to-edge linkage as in associative models, the philosophy is closely aligned.
+## Citations
 
-### 5. AtomicDB (X10SYS)
-- **Description:** A lesser-known project aimed at building a high-performance associative database system.
-- **Key Idea:** Data was conceptualized as atomic units linked together, enabling flexible linking across otherwise isolated records.
-
-### 6. Qlik’s Associative Engine
-- **Description:** Powers QlikView/Qlik Sense, creating an in-memory index of data values that are automatically associated based on co-occurrence.
-- **Key Idea:** This associative design facilitates instant, cross-dimensional data filtering, though it doesn’t support direct edge-to-edge linking.
-  
-> **Additional Note:**  
-> Research in the semantic web space (e.g., **RDF reification** and **RDF-star**) also acknowledges the need for making statements about statements (a kind of associative linking). Although RDF-star extends graph-based models, it supports nested associations, confirming the broader appeal of the idea.
-
-## Related Articles and Academic Work
-
-- **Semantic Web Reification & RDF-Star:**  
-  Discusses how to treat triples (or statements) as subjects/objects in further triples, conceptually similar to links theory.
-  
-- **"Associative Data Modeling Demystified":**  
-  A series of blog posts exploring how associative models compare and can improve upon traditional relational and graph-based approaches.
-  
-- **Academic Comparisons of Data Models:**  
-  Papers that compare graph databases, topic maps, and associative data models, highlighting the unique strengths of edge-to-edge linking.
-
-## Summary
-
-In essence, the associative data model as described by the Habr article has inspired a range of projects and systems that see data as a network of relationships that can be as dynamic and multi-dimensional as the associations in human thought. Key implementations such as **Sentences**, **TRIADB**, and **Deep.Foundation** demonstrate the practical benefits: reduced schema complexity, inherent flexibility, and truly recursive relationships. This approach offers a promising alternative that pushes beyond the limitations of both traditional relational databases and conventional graph databases.
-
----
-
-*This document aims to serve as an introductory summary of the associative data model and "links theory." For further reading, please refer to the listed primary sources and project documentations.*
+- ["The Links Theory 0.0.2"](https://habr.com/ru/articles/895896)
+- [Wikipedia Archive: Associative Model of Data](https://web.archive.org/web/20210814063207/https://en.wikipedia.org/wiki/Associative_model_of_data)
+- [CQL Website](https://categoricaldata.net/)
+- [HyperGraphDB Website](https://hypergraphdb.org/)
+- [TypeDB Website](https://vaticle.com/typedb)
+- [Graphbrain Documentation](https://graphbrain.net/overview/hypergraph.html)
+- [AtomicDBOnline](https://www.atomicdbonline.com/)
+- [Qlik Community: QlikView Associative Model](https://community.qlik.com/t5/QlikView-App-Dev/QlikView-Associative-Model-Explained-A-perspective-on-R3DM/td-p/1256548)
+- [Associative Data Modeling Demystified Part 1](https://www.datasciencecentral.com/associative-data-modeling-demystified-part1/)
+- [ResearchGate: The Associative Data Model](https://www.researchgate.net/publication/234779362_The_associative_data_model)
+- [arXiv: Categorical Data Integration](https://arxiv.org/abs/1903.10579)
