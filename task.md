@@ -7,3 +7,7 @@ Hypergraphs are out of the scope as they do not allow edges between edges too.
 Let's start by only english.
 
 I need people or projects or articles or systems that are close to associative data model or the links theory described in the article.
+
+Please summarize all links and findings into markdown document, so I can upload on GitHub.
+
+I should be able to copy markdown document from a code block (all code blocks inside if present should be escaped)
